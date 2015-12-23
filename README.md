@@ -1,7 +1,7 @@
 # Yeoman generator for magento
 
 ## Usage
-To install type as root 
+To install checkout and then type as root 
 
     npm link
 
