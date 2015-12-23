@@ -43,6 +43,16 @@ MageModuleGenerator.prototype.askFor = function askFor() {
     default: 'community'
   },
   {
+    type: 'checkbox',
+    name: 'elements',
+    message: 'Which elements should be created?',
+    choices: [
+      {name: "Layout File", value: 'layout'},
+      {name: "Front Controller",  value: 'frontController'}
+    ],
+      default: false
+    },
+  {
     name: 'author',
     message: 'Who is the creator?',
     default: 'Someone'
@@ -65,4 +75,15 @@ MageModuleGenerator.prototype.app = function app() {
     this.mkdir('app/code/' + this.codePool);
     this.mkdir('app/code/' + this.codePool + '/' + this.namespace);
     this.mkdir('app/code/' + this.codePool + '/' + this.namespace + '/' + this.moduleName);
+
+    if (this.elements.length) {
+        if (this.elements.indexOf('frontController') !== -1) {
+        }
+
+        if (this.elements.indexOf('layout') !== -1) {
+
+        }
+    }
+    this.template('etc-modules.xml', 'app/etc/modules/' + this.namespace + '_' + this.moduleName + '.xml');
+    
 };
