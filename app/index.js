@@ -66,6 +66,8 @@ MageModuleGenerator.prototype.askFor = function askFor() {
     this.fullModuleName = props.namespace + '_' + props.moduleName;
     this.moduleIdentifier = props.namespace.toLowerCase() + props.moduleName.toLowerCase();
     this.modulePath = 'app/code/' + this.codePool + '/' + this.namespace + '/' + this.moduleName + '/';
+    this.baseDir = options.env.cwd;
+    this.controllers = this.baseDir + '/' + this.modulePath + 'controllers/';
     cb();
   }.bind(this));
 };
@@ -86,6 +88,8 @@ MageModuleGenerator.prototype.app = function app() {
             
     if (this.elements.length) {
         if (this.elements.indexOf('frontController') !== -1) {
+          this.mkdir('controllers');
+          this.template('controller.php', this.controllers + 'IndexController' + '.php');
         }
 
         if (this.elements.indexOf('layout') !== -1) {
