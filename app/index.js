@@ -88,7 +88,7 @@ MageModuleGenerator.prototype.app = function app() {
     this.mkdir(this.modulePath + 'Helper');
     this.template('helper.php', this.modulePath + 'Helper/Data.php');
     this.mkdir(this.modulePath + 'Model');
-    this.template('model.php', this.modulePath + 'Model/' + this.moduleName);
+    this.template('model.php', this.modulePath + 'Model/' + this.moduleName + '.php');
 
     if (this.elements.length) {
         if (this.elements.indexOf('frontController') !== -1) {
