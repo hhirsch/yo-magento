@@ -64,6 +64,7 @@ MageModuleGenerator.prototype.askFor = function askFor() {
     this.codePool = props.codePool;
     this.author = props.author;
     this.fullModuleName = props.namespace + '_' + props.moduleName;
+    this.moduleIdentifier = props.namespace.toLowerCase() + props.moduleName.toLowerCase(); 
     cb();
   }.bind(this));
 };
