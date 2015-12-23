@@ -1,0 +1,22 @@
+{
+    "name": "generator-magento",
+    "version": "0.1.0",
+    "description": "A yeoman generator for magento modules",
+    "author": {
+        "name": "Henry Hirsch"
+    },
+    "main": "app/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:hhirsch/yo-magento.git"
+    },
+    "dependencies": {
+        "yeoman-generator": "^0.20.2"
+    },
+    "keywords": [
+        "yeoman-generator",
+        "php",
+        "magento"
+    ],
+    "license": "AGPL-3.0"
+}
