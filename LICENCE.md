@@ -1,4 +1,4 @@
-Copyright 2015 Manne, Henry
+Copyright 2013 Manne, 2015 Henry (for line by line credit check git)
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
