@@ -24,22 +24,34 @@ CppSuiteGenerator.prototype.askFor = function askFor() {
   console.log(this.yeoman);
 
   var prompts = [{
-    name: 'packageName',
-    message: 'What is the name of the package?',
+    name: 'namespace',
+    message: 'What is the namespace you want to use?',
     default: 'OpenMagento'
   }, {
     name: 'moduleName',
     message: 'What is the name of the module:',
     default: 'MyModule'
-  }, {
+  }, 
+  {
+    type: 'select',
+    name: 'codePool',
+    message: 'Which code pool do you want to use?',
+    choices: [
+      {name: "Local", value: "local"},
+      {name: "Community", value: "community"}
+    ],
+    default: 'community'
+  },
+  {
     name: 'author',
     message: 'Who is the creator?',
     default: 'Someone'
   }];
 
   this.prompt(prompts, function (props) {
-    this.packageName = props.packageName;
+    this.namespace = props.namespace;
     this.moduleName = props.moduleName;
+    this.codePool = props.codePool;
     this.author = props.author;
     cb();
   }.bind(this));
