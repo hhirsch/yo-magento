@@ -5,7 +5,7 @@ var yeoman = require('yeoman-generator');
 
 var foldername = path.basename(process.cwd());
 
-var CppSuiteGenerator = module.exports = function CppSuiteGenerator(args, options, config) {
+var MageModuleGenerator = module.exports = function MageModuleGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
   this.on('end', function () {
@@ -15,9 +15,9 @@ var CppSuiteGenerator = module.exports = function CppSuiteGenerator(args, option
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
 
-util.inherits(CppSuiteGenerator, yeoman.generators.Base);
+util.inherits(MageModuleGenerator, yeoman.generators.Base);
 
-CppSuiteGenerator.prototype.askFor = function askFor() {
+MageModuleGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
 
   // have Yeoman greet the user.
@@ -55,4 +55,14 @@ CppSuiteGenerator.prototype.askFor = function askFor() {
     this.author = props.author;
     cb();
   }.bind(this));
+};
+
+MageModuleGenerator.prototype.app = function app() {
+    this.mkdir('app');
+    this.mkdir('app/etc');
+    this.mkdir('app/etc/modules');
+    this.mkdir('app/code');
+    this.mkdir('app/code/' + this.codePool);
+    this.mkdir('app/code/' + this.codePool + '/' + this.namespace);
+    this.mkdir('app/code/' + this.codePool + '/' + this.namespace + '/' + this.moduleName);
 };
