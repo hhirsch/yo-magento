@@ -8,6 +8,8 @@ var foldername = path.basename(process.cwd());
 var MageModuleGenerator = module.exports = function MageModuleGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
+  this.baseDir = options.env.cwd;
+
   this.on('end', function () {
     this.installDependencies({ skipInstall: options['skip-install'] });
   });
@@ -31,7 +33,7 @@ MageModuleGenerator.prototype.askFor = function askFor() {
     name: 'moduleName',
     message: 'What is the name of the module:',
     default: 'MyModule'
-  }, 
+  },
   {
     type: 'select',
     name: 'codePool',
@@ -63,10 +65,12 @@ MageModuleGenerator.prototype.askFor = function askFor() {
     this.moduleName = props.moduleName;
     this.codePool = props.codePool;
     this.author = props.author;
+    this.setup = false;
+    this.adminhtml = false;
+    this.elements = props.elements;
     this.fullModuleName = props.namespace + '_' + props.moduleName;
     this.moduleIdentifier = props.namespace.toLowerCase() + props.moduleName.toLowerCase();
     this.modulePath = 'app/code/' + this.codePool + '/' + this.namespace + '/' + this.moduleName + '/';
-    this.baseDir = options.env.cwd;
     this.controllers = this.baseDir + '/' + this.modulePath + 'controllers/';
     cb();
   }.bind(this));
@@ -85,19 +89,19 @@ MageModuleGenerator.prototype.app = function app() {
     this.template('helper.php', this.modulePath + 'Helper/Data.php');
     this.mkdir(this.modulePath + 'Model');
     this.template('model.php', this.modulePath + 'Model/' + this.moduleName);
-            
+
     if (this.elements.length) {
         if (this.elements.indexOf('frontController') !== -1) {
           this.mkdir('controllers');
-          this.template('controller.php', this.controllers + 'IndexController' + '.php');
+          this.template('front_controller.php', this.controllers + 'IndexController' + '.php');
         }
 
         if (this.elements.indexOf('layout') !== -1) {
 
         }
     }
-    
+
     this.template('config.xml', this.modulePath + 'etc/config.xml')
     this.template('etc-modules.xml', 'app/etc/modules/' + this.namespace + '_' + this.moduleName + '.xml');
-    
+
 };

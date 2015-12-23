@@ -34,16 +34,6 @@
     </global>
     <% if (elements) { %>
     <frontend>
-        <% if (_.indexOf(elements, 'layout') !== -1) { %>
-        <layout>
-            <updates>
-                <<%= moduleIdentifier %>>
-                    <file><%= moduleIdentifier %>.xml</file>
-                </<%= moduleIdentifier %>>
-            </updates>
-        </layout>
-        <% } %>
-        <% if (_.indexOf(elements, 'frontController') !== -1) { %>
         <routers>
             <<%= moduleIdentifier %>>
                 <use>standard</use>
@@ -53,7 +43,6 @@
                 </args>
             </<%= moduleIdentifier %>>
         </routers>
-        <% } %>
     </frontend>
     <% } %>
     <% if (adminhtml) { %>
